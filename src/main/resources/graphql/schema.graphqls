@@ -1,0 +1,57 @@
+type Owner {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    budget: Float
+    pets: [Pet]
+}
+
+type Pet {
+    id: ID
+    name: String
+    description: String
+    type: String
+    rating: Int
+    dateOfBirth: String
+    price: Float
+    owner: Owner
+}
+
+type BuyHistoryLog {
+    executionDate: String
+    successCount: Int
+    failureCount: Int
+}
+
+type Query {
+    owners: [Owner]
+    pets: [Pet]
+    historyLog: [BuyHistoryLog]
+}
+
+type Mutation {
+    createOwners(input: CreateOwnerRequest!): [Owner]
+    createPets(input: CreatePetRequest!): [Pet]
+    buyPets: [String]
+}
+input CreatePetRequest {
+    petDtoList:[PetInput!]
+}
+input CreateOwnerRequest{
+    ownerDtoList:[OwnerInput!]
+}
+input OwnerInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    budget: Float!
+}
+
+input PetInput {
+    name: String!
+    type: String!
+    description: String!
+    dateOfBirth: String!
+    rating: Int
+}
